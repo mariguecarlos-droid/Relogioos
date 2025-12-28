@@ -17,6 +17,7 @@
                 <div class="logo">
                     <!-- Link da imagem atualizado -->
                     <img src="{{ url_for('static', filename='img/techtime.jpg') }}" alt="TechTime" class="header-logo-img">
+                    Tech<span>Time</span>
                 </div>
                 <nav>
                     <div class="cart-trigger" onclick="toggleCart()">
@@ -170,9 +171,21 @@
                     <p>Total a pagar: <strong id="checkout-total">R$ 0,00</strong></p>
                 </div>
                 <div class="customer-form">
-                    <!-- Campos Simplificados para Exemplo -->
-                    <div class="form-group"><label>Nome</label><input type="text" id="cust-name"></div>
-                    <div class="form-group"><label>CPF</label><input type="text" id="cust-cpf"></div>
+                    <h4>Dados Pessoais e Entrega</h4>
+                    <div class="form-group"><label>Nome Completo</label><input type="text" id="cust-name" placeholder="Seu nome completo"></div>
+                    <div class="form-group"><label>CPF</label><input type="text" id="cust-cpf" placeholder="000.000.000-00"></div>
+                    
+                    <div class="form-group"><label>CEP</label><input type="text" id="cust-cep" placeholder="00000-000"></div>
+                    <div class="form-row" style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 2;"><label>Endereço</label><input type="text" id="cust-address" placeholder="Rua, Avenida..."></div>
+                        <div class="form-group" style="flex: 1;"><label>Número</label><input type="text" id="cust-number" placeholder="123"></div>
+                    </div>
+                    <div class="form-group"><label>Complemento</label><input type="text" id="cust-complement" placeholder="Apto, Bloco (Opcional)"></div>
+                    <div class="form-group"><label>Bairro</label><input type="text" id="cust-district" placeholder="Bairro"></div>
+                    <div class="form-row" style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 3;"><label>Cidade</label><input type="text" id="cust-city" placeholder="Cidade"></div>
+                        <div class="form-group" style="flex: 1;"><label>Estado</label><input type="text" id="cust-state" placeholder="UF"></div>
+                    </div>
                 </div>
                 <div class="payment-method">
                     <div class="pix-badge"><i class="ph ph-pix-logo"></i> Pagamento via PIX</div>

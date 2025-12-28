@@ -165,23 +165,21 @@ function initBonusTimer() {
     const alertBox = document.getElementById('bonus-alert');
     if (!alertBox) return;
 
-    if (localStorage.getItem('bonusClosed') === 'true') {
-        closeBonus(false);
-        return;
-    }
+    // Removemos a verificação de fechamento anterior para manter o loop
+    // if (localStorage.getItem('bonusClosed_v2') === 'true') { ... }
 
-    let endTime = localStorage.getItem('bonusEndTime');
+    let endTime = localStorage.getItem('bonusEndTime_v2');
     const now = Math.floor(Date.now() / 1000);
 
     if (!endTime) {
         endTime = now + BONUS_DURATION;
-        localStorage.setItem('bonusEndTime', endTime);
+        localStorage.setItem('bonusEndTime_v2', endTime);
     } else {
         endTime = parseInt(endTime, 10);
     }
 
     if (now > endTime) {
-        expireBonus();
+        resetBonusTimer(); // Reinicia se já passou do tempo
         return;
     }
 
@@ -189,9 +187,17 @@ function initBonusTimer() {
     bonusInterval = setInterval(() => {
         const currentTime = Math.floor(Date.now() / 1000);
         const remaining = endTime - currentTime;
-        if (remaining <= 0) expireBonus();
+        if (remaining <= 0) {
+             resetBonusTimer(); // Reinicia quando chega a zero
+        }
         else updateTimerDisplay(remaining);
     }, 1000);
+}
+
+function resetBonusTimer() {
+    clearInterval(bonusInterval); // Limpa o intervalo atual
+    localStorage.removeItem('bonusEndTime_v2'); // Remove o tempo antigo
+    initBonusTimer(); // Reinicia o processo
 }
 
 function updateTimerDisplay(seconds) {
@@ -223,6 +229,6 @@ function closeBonus(animate = true) {
         if (animate) alertBox.classList.add('hidden');
         else alertBox.style.display = 'none';
     }
-    localStorage.setItem('bonusClosed', 'true');
+    localStorage.setItem('bonusClosed_v2', 'true');
     clearInterval(bonusInterval);
 }

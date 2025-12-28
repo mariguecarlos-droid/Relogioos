@@ -28,78 +28,76 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
+.container, .testimonials-section, .map-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 /* --- ALERTA DE BÔNUS (CARD FLUTUANTE) --- */
 .bonus-alert {
     position: fixed;
-    bottom: 90px; /* Acima do botão do chat (que fica em ~20px) */
+    bottom: 90px; /* Acima do botão do chat */
     right: 20px;
-    width: 260px; /* Tamanho reduzido tipo card */
+    width: 200px; /* Mais compacto */
     background: linear-gradient(135deg, #ff9f43, #ee5253);
-    z-index: 1900; /* Abaixo do chat window se abrir, mas acima do conteúdo */
+    z-index: 1900;
     display: flex;
     flex-direction: column;
     justify-content: center;
     box-shadow: 0 5px 25px rgba(0,0,0,0.3);
     border-radius: 12px;
     animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 15px;
+    padding: 10px; /* Padding reduzido */
     color: #fff;
     overflow: hidden;
 }
 
-.bonus-alert.hidden {
-    transform: translateX(120%);
-    transition: transform 0.5s ease-in;
-}
-
-@keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
+/* ... (código existente) ... */
 
 .bonus-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 5px; /* Gap reduzido */
     width: 100%;
 }
 
 .bonus-text {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .bonus-text i {
-    font-size: 1.8rem;
+    font-size: 1.4rem; /* Ícone menor */
     animation: wobble 2s infinite;
 }
 
 .bonus-text-col {
     display: flex;
     flex-direction: column;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .bonus-text-col span {
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.75rem; /* Fonte menor */
     text-transform: uppercase;
 }
 
 .bonus-text-col small {
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* Fonte menor */
     opacity: 0.9;
 }
 
 .bonus-timer-container {
     background: rgba(0,0,0,0.2);
-    padding: 5px 8px;
-    border-radius: 6px;
+    padding: 4px 6px;
+    border-radius: 4px;
     font-weight: bold;
     font-family: monospace;
-    font-size: 1.1rem;
+    font-size: 0.9rem; /* Fonte timer menor */
     border: 1px solid rgba(255,255,255,0.3);
     text-align: center;
 }
@@ -149,6 +147,16 @@ ul { list-style: none; }
     }
 }
 
+/* Cabeçalho */
+header {
+    background-color: var(--dark-card); /* Mantém o fundo branco */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Pequena sombra para destacá-lo */
+    position: sticky; /* Opcional: para o cabeçalho fixar no topo */
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0; /* Adiciona padding superior e inferior */
+}
+
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -156,6 +164,9 @@ ul { list-style: none; }
 }
 
 .logo {
+    display: flex; /* Para alinhar a imagem e o texto */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 10px; /* Espaço entre a imagem e o texto */
     font-size: 1.5rem; /* Mantido para contexto, mas a imagem o substituirá visualmente */
     font-weight: bold;
     text-transform: uppercase;
@@ -164,17 +175,15 @@ ul { list-style: none; }
 }
 
 .header-logo-img {
-    height: 55px; /* Aumentar um pouco a altura do logo */
+    height: 65px; /* Aumentar um pouco a altura do logo */
     width: auto; /* Mantém a proporção */
     vertical-align: middle;
 }
 
-.logo span { color: var(--primary); }
-
 .cart-trigger {
     position: relative;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Aumentar o tamanho do carrinho */
     color: #333;
 }
 
@@ -184,9 +193,9 @@ ul { list-style: none; }
     right: -8px;
     background-color: var(--primary);
     color: #fff;
-    font-size: 0.8rem;
-    width: 18px;
-    height: 18px;
+    font-size: 0.9rem; /* Aumentar um pouco a fonte */
+    width: 20px; /* Aumentar o tamanho da bolha */
+    height: 20px; /* Aumentar o tamanho da bolha */
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -251,7 +260,7 @@ ul { list-style: none; }
 
 /* Produtos */
 .products-section {
-    padding: 80px 20px;
+    padding: 80px 0;
     background-color: #fff;
 }
 
@@ -399,6 +408,10 @@ ul { list-style: none; }
 .testimonials-section {
     padding: 80px 0;
     background-color: #000a1a; /* Azul do Footer */
+    border-radius: 15px; /* Cantos arredondados para a seção */
+    overflow: hidden; /* Garante que o conteúdo não vaze dos cantos */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Pequena sombra */
+    margin-bottom: 40px; /* Separar do mapa */
 }
 
 .testimonials-section h2 {
@@ -412,7 +425,7 @@ ul { list-style: none; }
     display: flex;
     overflow-x: hidden; /* Esconde barra de rolagem para animação */
     gap: 20px;
-    padding: 20px 10px 40px 10px;
+    padding: 20px 0 40px 0;
     /* scroll-snap-type removido para animação contínua fluida */
 }
 
@@ -420,7 +433,7 @@ ul { list-style: none; }
     min-width: 300px;
     max-width: 350px;
     background-color: #fff;
-    border-radius: 12px;
+    border-radius: 15px; /* Cantos mais arredondados */
     padding: 25px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.3); /* Sombra mais visível no fundo escuro */
     transition: transform 0.3s ease;
@@ -767,8 +780,7 @@ ul { list-style: none; }
 /* Mapa */
 .map-section {
     width: 100%;
-    max-width: 1000px; /* Limita a largura máxima do mapa */
-    margin: 0 auto 40px auto;    /* Centraliza e adiciona margem inferior */
+    margin-bottom: 40px; /* Mantém apenas a margem inferior */
     line-height: 0; /* Remove espaço extra abaixo do iframe */
     border-top: 1px solid var(--border-color);
 }
