@@ -22,109 +22,131 @@ body {
     color: var(--text-light);
     font-family: var(--font-main);
     overflow-x: hidden;
-    padding-top: 60px; /* Espaço para o alerta permanente */
+    padding-top: 0; /* Alerta não está mais no topo, então remove padding */
 }
 
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
-/* --- ALERTA DE BÔNUS --- */
+/* --- ALERTA DE BÔNUS (CARD FLUTUANTE) --- */
 .bonus-alert {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px; /* Altura fixa para o alerta permanente */
-    background: linear-gradient(90deg, #ff9f43, #ee5253, #ff9f43);
-    background-size: 200% 100%;
-    z-index: 2000; /* Acima do Header */
+    bottom: 90px; /* Acima do botão do chat (que fica em ~20px) */
+    right: 20px;
+    width: 260px; /* Tamanho reduzido tipo card */
+    background: linear-gradient(135deg, #ff9f43, #ee5253);
+    z-index: 1900; /* Abaixo do chat window se abrir, mas acima do conteúdo */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    animation: gradientMove 3s linear infinite; /* Apenas animação do gradiente */
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    border-radius: 12px;
+    animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 15px;
+    color: #fff;
+    overflow: hidden;
 }
 
-@keyframes gradientMove {
-    0% { background-position: 100% 0; }
-    100% { background-position: -100% 0; }
+.bonus-alert.hidden {
+    transform: translateX(120%);
+    transition: transform 0.5s ease-in;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
 .bonus-content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    height: 100%;
-    color: #fff;
-    font-size: 0.95rem;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
 }
 
 .bonus-text {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .bonus-text i {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     animation: wobble 2s infinite;
 }
 
-@keyframes wobble {
-    0%, 100% { transform: rotate(0deg); }
-    15% { transform: rotate(-15deg); }
-    30% { transform: rotate(10deg); }
-    45% { transform: rotate(-10deg); }
-    60% { transform: rotate(5deg); }
+.bonus-text-col {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
 }
 
-.btn-claim-bonus {
-    background-color: #fff;
-    color: #ee5253;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
+.bonus-text-col span {
     font-weight: bold;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: 0.3s;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.btn-claim-bonus:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+.bonus-text-col small {
+    font-size: 0.8rem;
+    opacity: 0.9;
 }
 
-/* Utilitários */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.bonus-timer-container {
+    background: rgba(0,0,0,0.2);
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.1rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    text-align: center;
 }
 
-/* Header Ajuste */
-header {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 20px 0;
-    position: fixed;
+.bonus-timer-container.urgent {
+    background-color: #c0392b;
+    animation: pulse-red 0.5s infinite;
+}
+
+.btn-close-bonus {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.btn-close-bonus:hover { color: #fff; }
+
+.progress-bar-container {
+    height: 4px;
+    background-color: rgba(0,0,0,0.2);
     width: 100%;
-    top: 60px; /* Move o header para baixo por causa do alerta permanente */
-    transition: top 0.5s ease; /* Transição suave */
-    z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-top: 10px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #fff;
+    width: 100%;
+    transition: width 1s linear;
 }
 
 /* Responsivo para o Alerta */
-@media (max-width: 768px) {
-    .bonus-alert { height: 90px; } /* Ajuste a altura para que o conteúdo caiba em telas menores */
-    .bonus-content { flex-wrap: wrap; gap: 10px; text-align: center; }
-    .bonus-text span { font-size: 0.8rem; }
-    body { padding-top: 90px; } /* Mais espaço no mobile para a nova altura do alerta */
-    header { top: 90px; } /* Ajusta o header no mobile */
+@media (max-width: 480px) {
+    .bonus-alert {
+        width: auto;
+        left: 20px;
+        right: 20px;
+        bottom: 90px;
+    }
 }
 
 .header-content {
