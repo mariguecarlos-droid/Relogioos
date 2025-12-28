@@ -120,6 +120,8 @@ async function processPayment() {
 }
 
 // --- Chat Widget ---
+let autoReplySent = false; // Variável para controlar a resposta automática
+
 function toggleChatWidget() {
     const chatWindow = document.getElementById('chat-window');
     chatWindow.classList.toggle('active');
@@ -132,6 +134,18 @@ function sendChatMessage() {
         const chatMessages = document.getElementById('chat-messages');
         chatMessages.innerHTML += `<div class="message user"><p>${message}</p><span class="time">Agora</span></div>`;
         input.value = "";
+        
+        // Resposta automática do bot após a primeira mensagem do usuário
+        if (!autoReplySent) {
+            const botMessage = "Olá! Agradecemos o seu contato. Um de nossos atendentes já foi notificado e dará continuidade ao seu atendimento em breve.";
+            // Simula um pequeno atraso para parecer mais natural
+            setTimeout(() => {
+                chatMessages.innerHTML += `<div class="message bot"><p>${botMessage}</p><span class="time">Agora</span></div>`;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 5000); // 5 segundos de atraso
+            autoReplySent = true;
+        }
+
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 }
