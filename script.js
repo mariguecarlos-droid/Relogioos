@@ -329,3 +329,45 @@ function getCurrentTime() {
     const now = new Date();
     return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 }
+
+// ============================================================
+// --- AUTO SCROLL AVALIAÇÕES ---
+// ============================================================
+document.addEventListener('DOMContentLoaded', initTestimonialsCarousel);
+
+function initTestimonialsCarousel() {
+    const carousel = document.getElementById('testimonials-carousel');
+    if (!carousel) return;
+
+    // Clonar items para efeito infinito suave
+    // Cria uma cópia de todos os filhos e adiciona ao final
+    const items = Array.from(carousel.children);
+    items.forEach(item => {
+        carousel.appendChild(item.cloneNode(true));
+    });
+
+    let isPaused = false;
+    
+    // Pausa no hover/toque
+    carousel.addEventListener('mouseenter', () => isPaused = true);
+    carousel.addEventListener('mouseleave', () => isPaused = false);
+    carousel.addEventListener('touchstart', () => isPaused = true);
+    carousel.addEventListener('touchend', () => isPaused = false);
+
+    // Função de animação
+    function autoScroll() {
+        if (!isPaused) {
+            carousel.scrollLeft += 1; // Ajuste a velocidade aqui (px por frame)
+
+            // Reset invisível
+            // Se rolamos metade do conteúdo (que é o tamanho original), voltamos para 0
+            if (carousel.scrollLeft >= (carousel.scrollWidth / 2)) {
+                carousel.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(autoScroll);
+    }
+
+    // Inicia o loop
+    requestAnimationFrame(autoScroll);
+}

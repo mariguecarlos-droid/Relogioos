@@ -10,6 +10,17 @@
 </head>
 <body>
 
+    <!-- Alerta de Bônus (Countdown) -->
+    <div id="bonus-alert" class="bonus-alert">
+        <div class="bonus-content container">
+            <div class="bonus-text">
+                <i class="ph-fill ph-ticket"></i>
+                <span>OFERTA PERMANENTE! Ganhe <strong>10% OFF</strong> em todas as compras!</span>
+            </div>
+            <button class="btn-claim-bonus" onclick="claimBonus()">PEGAR CUPOM</button>
+        </div>
+    </div>
+
     <!-- Cabeçalho -->
     <header>
         <div class="container header-content">
@@ -39,6 +50,194 @@
         <h2>Coleção Smartwatch</h2>
         <div class="products-grid" id="products-grid">
             <!-- Produtos serão inseridos aqui via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Avaliações de Clientes (Testimonials) -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>O Que Dizem Nossos Clientes</h2>
+            <div class="testimonials-carousel" id="testimonials-carousel">
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Carlos Oliveira</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Excelente relógio! Chegou muito rápido e a qualidade é impressionante. Recomendo a todos!"</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #ff9f43;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Ana Souza</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Estou apaixonada pelo meu novo smartwatch. Funções incríveis e muito bonito no pulso."</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #ee5253;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Marcos Lima</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-bold ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Atendimento nota 10! Tive uma dúvida na configuração e o suporte me ajudou prontamente."</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #2e86de;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Fernanda Costa</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Comprei de presente para o meu marido e ele adorou. O acabamento é muito premium."</p>
+                </div>
+
+                 <!-- Card 5 -->
+                 <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #1dd1a1;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Rafael Dias</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Ótimo custo benefício. As funções de monitoramento de saúde são muito precisas."</p>
+                </div>
+
+                <!-- Card 6 (4.5 Estrelas) -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #8e44ad;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Juliana Martins</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star-half"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Adorei, mas a entrega atrasou um pouco. O relógio em si é perfeito e muito funcional."</p>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #f39c12;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Roberto Alves</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Qualidade surreal. Super recomendo a loja, tudo conforme o anunciado."</p>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #d35400;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Carla Mendes</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Muito lindo, combina com tudo. A bateria dura bastante, estou satisfeita."</p>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="testimonial-card">
+                    <div class="client-info">
+                        <div class="client-avatar" style="background-color: #27ae60;">
+                            <i class="ph ph-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h3>Felipe Nogueira</h3>
+                            <div class="stars">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Melhor smartwatch que já tive. O design é moderno e as notificações funcionam bem."</p>
+                </div>
+            </div>
         </div>
     </section>
 
